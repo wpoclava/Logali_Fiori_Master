@@ -1,0 +1,50 @@
+_schema-version: "3.2"
+ID: Invoices0
+version: 0.0.1
+modules:
+- name: invoices0-approuter
+  type: approuter.nodejs
+  path: invoices0-approuter
+  requires:
+  - name: Invoices0_html_repo_runtime
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: Invoices0_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Invoices0_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - SAPUI5-content.zip
+      name: SAPUI5
+      target-path: resources/
+- name: SAPUI5
+  type: html5
+  path: SAPUI5
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: Invoices0_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: Invoices0_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
