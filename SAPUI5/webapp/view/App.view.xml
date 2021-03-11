@@ -16,6 +16,7 @@
                     </headerContent>                
                     <content>
                         <mvc:XMLView viewName="logaligroup.SAPUI5.view.HelloPanel"/>
+                        <mvc:XMLView viewName="logaligroup.SAPUI5.view.InvoicesList"/>
                     </content>
                 </Page>
             </pages>
