@@ -20,6 +20,26 @@
       },
       "envFile": "${workspaceFolder}/SAPUI5/.env2",
       "preLaunchTask": "Build Invoices0"
+    },
+    {
+      "name": "Run Mock Server Invoices0-SAPUI5",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/invoices0-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/logaligroupSAPUI5/test/mockServer.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/SAPUI5",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Invoices0/SAPUI5\"}"
+      },
+      "envFile": "${workspaceFolder}/SAPUI5/.env3",
+      "preLaunchTask": "Build Invoices0"
     }
   ]
 }
