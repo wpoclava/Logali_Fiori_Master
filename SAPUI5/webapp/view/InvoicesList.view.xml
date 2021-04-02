@@ -28,13 +28,9 @@
 									}
 							}"
                             numberUnit="{currency>/usd}"
-                            numberState="{= ${northwind>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
-                            <!--<firstStatus>
-								<ObjectStatus text="{
-									path: 'northwind>Status',
-									formatter: '.formatter.invoiceStatus'
-								}"/>
-							</firstStatus>-->
+                            numberState="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error' }"
+                            type="Navigation"
+                            press="navigateToDetails">
 			</ObjectListItem>
 		</items>
 	</List>
