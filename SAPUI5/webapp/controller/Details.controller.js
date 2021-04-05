@@ -15,6 +15,7 @@ sap.ui.define([
         return Controller.extend("logaligroup.SAPUI5.controller.Details", {
 
             _onObjectMatched: function (oEvent) {
+                this.byId("rating").reset();
                 this.getView().bindElement({
                     path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
                     model: "northwind"
@@ -27,19 +28,26 @@ sap.ui.define([
             },
 
             onNavBack: function () {
-			const oHistory = History.getInstance();
-			const sPreviousHash = oHistory.getPreviousHash();
+                const oHistory = History.getInstance();
+                const sPreviousHash = oHistory.getPreviousHash();
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				/* en caso que llegue a la segunda vista 
-				sin haber pasado por la primera vista,
-				por ejemplo, porque le pasaron la URL*/
-				const oRouter = UIComponent.getRouterFor(this);
-				oRouter.navTo("RouteApp", {}, true);
-			}
-		}
+                if (sPreviousHash !== undefined) {
+                    window.history.go(-1);
+                } else {
+                    /* en caso que llegue a la segunda vista 
+                    sin haber pasado por la primera vista,
+                    por ejemplo, porque le pasaron la URL*/
+                    const oRouter = UIComponent.getRouterFor(this);
+                    oRouter.navTo("RouteApp", {}, true);
+                }
+            },
+            
+            onRatingChange: function(oEvent) {
+                const fValue = oEvent.getParameter("value");
+                const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+                
+                sap.m.MessageToast.show(oResourceBundle.getText("ratingConfirmation", [fValue]));
+		    }
 
         });
     });
