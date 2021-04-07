@@ -5,6 +5,16 @@
     xmlns:core="sap.ui.core"
     displayBlock="true">
         <Page title="{i18n>appTitle}">
+            <landmarkInfo>
+                <PageAccessibleLandmarkInfo 
+                    rootRole="Region"
+                    rootLabel="{i18n>overviewRootLabel}"
+                    contentRole="Main"
+                    contentLabel="{i18n>overviewContentLabel}"
+                    headerRole="Banner"
+                    headerLabel="{i18n>overviewHeaderLabel}"
+                />
+            </landmarkInfo>        
             <headerContent>
                 <Button id="helloDialogHeader"
                         icon="sap-icon://action" 
